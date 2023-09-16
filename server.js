@@ -17,20 +17,21 @@ srv.use(logger({
 }));
 
 const getVideoData = async id => {
+    let idResolved = id;
     if (id.toString().length == 9) {
         try {
             const page = await axios.get(`https://vm.tiktok.com/${id}`);
             const html = page.data;
             const matches = html.match(/property="og:url" +content="https:\/\/www.tiktok.com\/@.*?\/video\/(.*?)\?/);
-            id = matches[1];
+            idResolved = matches[1];
         } catch (error) {}
     }
     if (storage.videos[id])
         return storage.videos[id];
-    const res = await axios.get(`https://api16-normal-c-useast1a.tiktokv.com/aweme/v1/feed/?aweme_id=${id}`);
+    const res = await axios.get(`https://api16-normal-c-useast1a.tiktokv.com/aweme/v1/feed/?aweme_id=${idResolved}`);
     if (!res.data?.aweme_list?.length) return null;
     const data = res.data.aweme_list[0];
-    if (data.aweme_id !== id) return null;
+    if (data.aweme_id !== idResolved) return null;
     const compiled = {
         id: data.aweme_id,
         desc: data.desc,
@@ -104,7 +105,7 @@ srv.listen(port, console.log(`Listening on port ${port}`));
 setInterval(() => {
     for (const id in storage.videos) {
         const video = storage.videos[id];
-        if ((Date.now()-video.fetch_time) < 1000*60*60*config.cache_time_hours) {
+        if ((Date.now()-video.fetch_time) > 1000*60*60*config.cache_time_hours) {
             delete storage.videos[id];
             console.log(`Deleted cached data for video`, id);
         }
