@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#69c9d0">
+    <meta property="og:video" content="<%= origin %>/v/<%= data.id %>/video.mp4">
+    <meta property="og:video:secure_url" content="<%= origin %>/v/<%= data.id %>/video.mp4">
+    <meta property="og:video:type" content="video/mp4">
+    <meta name="twitter:card" content="player">
+    <link rel="alternate" type="application/json+oembed" href="<%= origin %>/v/<%= data.id %>/oembed.json" />
+    <title>@<%= data.author.username %> - <%= data.desc %></title>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: black;
+    }
+    #video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<body>
+    <iframe id="video"
+        src="https://src.simplecyber.org/v2/video?url=<%= origin %>/v/<%= data.id %>/video.mp4"
+        allow="autoplay; fullscreen"
+        frameborder=0>
+</body>
+</html>

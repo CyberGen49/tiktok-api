@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://src.simplecyber.org/v2/themes.css">
+    <link rel="stylesheet" href="https://src.simplecyber.org/v2/base.css">
+    <meta property="og:site_name" content="SimpleCyber TikTok">
+    <meta property="og:title" content="SimpleCyber TikTok">
+    <meta property="og:description" content="Making sharing raw TikTok videos with rich embeds easier!">
+    <title>SimpleCyber TikTok</title>
+</head>
+<body class="darkmuted">
+    <div class="container">
+        <h1>SimpleCyber TikTok</h1>
+        <p>This site's purpose is to make sharing raw TikTok videos with rich embeds easier.</p>
+
+        <h2>Getting a TikTok video ID</h2>
+        <p>Getting the ID of a TikTok video depends on the type of video URL you have:</p>
+        <ul>
+            <li>https://vm.tiktok.com/<b class="text-success">id</b></li>
+            <li>https://www.tiktok.com/@username/video/<b class="text-success">id</b></li>
+        </ul>
+        <p>Every video endpoint of this site requires that you have a video ID, so find the your video ID depending on the options above. It might be a string of 9 random characters, or 19 numbers.</p>
+
+        <h2>Usage</h2>
+
+        <h3>Getting a video link with a playable link preview for sharing on Discord</h3>
+        <p>URL: <code>https://tiktok.simplecyber.org/v/<span class="text-success">id</span></code></p>
+        <p>This endpoint hosts a webpage with metadata supporting rich link previews and video playback on sites like Discord. This is perfect for sharing videos with your friends.</p>
+        <p>Opening the page in your browser will display the video in a custom video player provided by <a href="https://github.com/CyberGen49/web-resources">@CyberGen49/web-resources</a>.</p>
+
+        <h3>Getting a direct video redirect suitable for downloading</h3>
+        <p>URL: <code>https://tiktok.simplecyber.org/v/<span class="text-success">id</span>/video.mp4</code></p>
+        <p>This endpoint redirects to the most up-to-date internal TikTok video URL suitable for direct downloads. Don't cache the target URL, as it may change over time.</p>
+
+        <h3>Getting video metadata as JSON</h3>
+        <p>URL: <code>https://tiktok.simplecyber.org/v/<span class="text-success">id</span>/json</code></p>
+        <h5>boolean <code>success</code></h5>
+        <p>Determines whether the request was successful. If this is false, assume that no other data is provided.</p>
+        <h5>string <code>id</code></h5>
+        <p>The video's ID</p>
+        <h5>number <code>create_time</code></h5>
+        <p>A timestamp representing the time of video creation.</p>
+        <h5>object <code>author</code></h5>
+        <p>Contains properties pertaining to the video's creator.</p>
+        <h5>string <code>author.id</code></h5>
+        <p>The video creator's ID.</p>
+        <h5>string <code>author.username</code></h5>
+        <p>The video creator's username.</p>
+        <h5>string <code>author.name</code></h5>
+        <p>The video creator's nickname.</p>
+        <h5>string <code>author.avatar</code></h5>
+        <p>A URL leading to the video creator's avatar image.</p>
+        <h5>string <code>video_url</code></h5>
+        <p>The internal direct URL for this video. This URL may change over time, so don't cache it.</p>
+        <h5>number <code>fetch_time</code></h5>
+        <p>A timestamp representing the time at which this data was fetched from TikTok.</p>
+    </div>
+</body>
+</html>

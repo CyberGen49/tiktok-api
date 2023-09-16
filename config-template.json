@@ -1,0 +1,7 @@
+{
+    "http": {
+        "port": 8080,
+        "origin": "http://localhost:8080"
+    },
+    "cache_time_hours": 24
+}
