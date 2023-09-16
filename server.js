@@ -15,7 +15,6 @@ const srv = express();
 srv.use(logger({
     getIP: req => req.headers['cf-connecting-ip'],
 }));
-srv.use(express.static('web'));
 
 const getVideoData = async id => {
     if (id.toString().length == 9) {
@@ -50,6 +49,12 @@ const getVideoData = async id => {
     return compiled;
 };
 
+srv.get('/', async(req, res) => {
+    res.setHeader('Content-Type', 'text/html');
+    res.end(await ejs.renderFile('./ejs/home.ejs', {
+        config
+    }));
+});
 srv.get('/v', (req, res) => res.redirect('/'));
 srv.get('/v/:id', async(req, res) => {
     const id = req.params.id;

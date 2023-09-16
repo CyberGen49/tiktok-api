@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://src.simplecyber.org/v2/themes.css">
     <link rel="stylesheet" href="https://src.simplecyber.org/v2/base.css">
-    <meta property="og:site_name" content="SimpleCyber TikTok">
-    <meta property="og:title" content="SimpleCyber TikTok">
+    <meta property="og:site_name" content="<%= config.home_title %>">
+    <meta property="og:title" content="<%= config.home_title %>">
     <meta property="og:description" content="Making sharing raw TikTok videos with rich embeds easier!">
-    <title>SimpleCyber TikTok</title>
+    <title><%= config.home_title %></title>
 </head>
 <body class="darkmuted">
     <div class="container">
-        <h1>SimpleCyber TikTok</h1>
+        <h1><%= config.home_title %></h1>
         <p>This site's purpose is to make sharing raw TikTok videos with rich embeds easier.</p>
 
         <h2>Getting a TikTok video ID</h2>
@@ -26,16 +26,16 @@
         <h2>Usage</h2>
 
         <h3>Getting a video link with a playable link preview for sharing on Discord</h3>
-        <p>URL: <code>https://tiktok.simplecyber.org/v/<span class="text-success">id</span></code></p>
+        <p>URL: <code><%= config.http.origin %>/v/<span class="text-success">id</span></code></p>
         <p>This endpoint hosts a webpage with metadata supporting rich link previews and video playback on sites like Discord. This is perfect for sharing videos with your friends.</p>
         <p>Opening the page in your browser will display the video in a custom video player provided by <a href="https://github.com/CyberGen49/web-resources">@CyberGen49/web-resources</a>.</p>
 
         <h3>Getting a direct video redirect suitable for downloading</h3>
-        <p>URL: <code>https://tiktok.simplecyber.org/v/<span class="text-success">id</span>/video.mp4</code></p>
+        <p>URL: <code><%= config.http.origin %>/v/<span class="text-success">id</span>/video.mp4</code></p>
         <p>This endpoint redirects to the most up-to-date internal TikTok video URL suitable for direct downloads. Don't cache the target URL, as it may change over time.</p>
 
         <h3>Getting video metadata as JSON</h3>
-        <p>URL: <code>https://tiktok.simplecyber.org/v/<span class="text-success">id</span>/json</code></p>
+        <p>URL: <code><%= config.http.origin %>/v/<span class="text-success">id</span>/json</code></p>
         <h5>boolean <code>success</code></h5>
         <p>Determines whether the request was successful. If this is false, assume that no other data is provided.</p>
         <h5>string <code>id</code></h5>
